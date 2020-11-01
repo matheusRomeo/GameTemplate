@@ -4,9 +4,9 @@ import java.awt.image.BufferedImage;
 
 import com.azuryPlays.world.Tile;
 
-public class WallTile extends Tile{
+public class SolidTile extends Tile{
 
-	public WallTile(int x, int y, BufferedImage sprite) {
+	public SolidTile(int x, int y, BufferedImage sprite) {
 		super(x, y, sprite);
 	}
 

@@ -14,12 +14,14 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.swing.JFrame;
 
 import com.azuryPlays.entities.Entity;
 import com.azuryPlays.entities.Player;
 import com.azuryPlays.graphics.Spritesheet;
 import com.azuryPlays.graphics.UI;
+import com.azuryPlays.world.World;
 
 public class Game extends Canvas implements Runnable,KeyListener,MouseListener,MouseMotionListener{
 
@@ -27,13 +29,13 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 	public static JFrame frame;
 	private Thread thread;
 	private boolean isRunning = true;
-	public static final int WIDTH = 512; // resolução base do jogo Horizontal
-	public static final int HEIGHT = 320; // resolução base do jogo Vertical
-	public static final int SCALE = 2;	// multiplicação da escala de resolução
+	public static final int WIDTH = 960; // resolução base do jogo Horizontal
+	public static final int HEIGHT = 512; // resolução base do jogo Vertical
+	public static final int SCALE = 1;	// multiplicação da escala de resolução
 	
 	private BufferedImage image;
 	
-
+	public static World world;
 	public static List<Entity> entities;
 	public static Spritesheet spritesheet;
 	public static Player player;
@@ -53,8 +55,12 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 		//Inicializando objetos.
 		spritesheet = new Spritesheet("/spritesheet.png");
 		entities = new ArrayList<Entity>();
+		
 		/* contrutor do Player= posição do mapa,   tamando horizontal,  tamanho vertical,  spd, sprite do personagem a partir da imagem na pasta RES*/
-		player = new Player(WIDTH/2 - 30, HEIGHT/2, Player.PLAYER_SIZE, Player.PLAYER_SIZE, 2, spritesheet.getSprite(0,0,Player.PLAYER_SIZE,Player.PLAYER_SIZE));
+		player = new Player(WIDTH/2 - 30, HEIGHT/2, Player.PLAYER_SIZE, Player.PLAYER_SIZE, 2,Entity.PLAYER_SPRITE);
+		
+		//mapas com resoção 960x512 registrados como level x tamanho dos World.TILES_SIZE p 
+		world = new World("/levelx16p.png"); 
 		ui = new UI();
 		
 		entities.add(player);
@@ -62,7 +68,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 	}
 	
 	public void initFrame(){
-		frame = new JFrame("game name?");
+		frame = new JFrame("Game Name ?");
 		frame.add(this);
 		frame.setResizable(false);
 		frame.pack();
@@ -117,6 +123,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 		
 		/*Renderização do jogo*/
 		//Graphics2D g2 = (Graphics2D) g;
+		world.render(g);
 		Collections.sort(entities,Entity.nodeSorter);
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
@@ -162,12 +169,19 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
-	
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) 
+			player.right = true;
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) 
+			player.left  =true;
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) 
+			player.right = false;
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) 
+			player.left  =false;
 		
 		
 	}

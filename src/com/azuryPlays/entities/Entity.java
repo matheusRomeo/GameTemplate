@@ -23,6 +23,7 @@ public class Entity {
 	
 	/* pegando Sprites da imagem para renderizar o objeto inicialmente*/
 	public static BufferedImage OBJ = Game.spritesheet.getSprite(0, 0, ENTITY_SIZE, ENTITY_SIZE);
+	public static BufferedImage PLAYER_SPRITE = Game.spritesheet.getSprite(32,0,Player.PLAYER_SIZE,Player.PLAYER_SIZE);
 	
 	
 	protected double x;
@@ -37,7 +38,7 @@ public class Entity {
 	
 	public boolean debug = false;
 	
-	private BufferedImage sprite;
+	protected BufferedImage sprite;
 	
 	public static Random rand = new Random();
 	

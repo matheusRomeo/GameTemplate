@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.azuryPlays.world.Tile;
 import com.azuryPlays.world.World;
-import com.azuryPlays.world.tiles.WallTile;
+import com.azuryPlays.world.tiles.SolidTile;
 
 
 public class AStar {
@@ -67,32 +67,32 @@ public class AStar {
 				int yi = (i/3) - 1;
 				Tile tile = World.tiles[x+xi+((y+yi)*World.WIDTH)];
 				if(tile == null) continue;
-				if(tile instanceof WallTile) continue;
+				if(tile instanceof SolidTile) continue;
 				if(i == 0) {
 					Tile test = World.tiles[x+xi+1+((y+yi) * World.WIDTH)];
 					Tile test2 = World.tiles[x+xi+((y+yi+1) * World.WIDTH)];
-						if(test instanceof WallTile || test2 instanceof WallTile) {
+						if(test instanceof SolidTile || test2 instanceof SolidTile) {
 							continue;
 						}
 				}
 				else if(i == 2) {
 					Tile test = World.tiles[x+xi-1+((y+yi) * World.WIDTH)];
 					Tile test2 = World.tiles[x+xi+((y+yi+1) * World.WIDTH)];
-						if(test instanceof WallTile || test2 instanceof WallTile) {
+						if(test instanceof SolidTile || test2 instanceof SolidTile) {
 							continue;
 						}
 				}
 				else if(i == 6) {
 					Tile test = World.tiles[x+xi+((y+yi-1) * World.WIDTH)];
 					Tile test2 = World.tiles[x+xi+1+((y+yi) * World.WIDTH)];
-						if(test instanceof WallTile || test2 instanceof WallTile) {
+						if(test instanceof SolidTile || test2 instanceof SolidTile) {
 							continue;
 						}
 				}
 				else if(i == 8) {
 					Tile test = World.tiles[x+xi+((y+yi-1) * World.WIDTH)];
 					Tile test2 = World.tiles[x+xi-1+((y+yi) * World.WIDTH)];
-						if(test instanceof WallTile || test2 instanceof WallTile) {
+						if(test instanceof SolidTile || test2 instanceof SolidTile) {
 							continue;
 						}
 				}
