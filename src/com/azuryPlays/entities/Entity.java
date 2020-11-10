@@ -30,7 +30,6 @@ public class Entity {
 	protected double y;
 	protected int width;
 	protected int height;
-	protected double speed;
 	
 	public int depth;
 
@@ -42,10 +41,9 @@ public class Entity {
 	
 	public static Random rand = new Random();
 	
-	public Entity(double x,double y,int width,int height,double speed,BufferedImage sprite){
+	public Entity(double x,double y,int width,int height,BufferedImage sprite){
 		this.x = x;
 		this.y = y;
-		this.speed = speed;
 		this.width = width;
 		this.height = height;
 		this.sprite = sprite;

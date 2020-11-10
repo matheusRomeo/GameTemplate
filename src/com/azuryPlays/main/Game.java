@@ -57,7 +57,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 		entities = new ArrayList<Entity>();
 		
 		/* contrutor do Player= posição do mapa,   tamando horizontal,  tamanho vertical,  spd, sprite do personagem a partir da imagem na pasta RES*/
-		player = new Player(WIDTH/2 - 30, HEIGHT/2, Player.PLAYER_SIZE, Player.PLAYER_SIZE, 2,Entity.PLAYER_SPRITE);
+		player = new Player(WIDTH/2 - 30, HEIGHT/2, Player.PLAYER_SIZE, Player.PLAYER_SIZE,Entity.PLAYER_SPRITE);
 		
 		//mapas com resoção 960x512 registrados como level x tamanho dos World.TILES_SIZE p 
 		world = new World("/levelx16p.png"); 
@@ -169,20 +169,12 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) 
-			player.right = true;
-		else if(e.getKeyCode() == KeyEvent.VK_LEFT) 
-			player.left  =true;
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) 
-			player.right = false;
-		else if(e.getKeyCode() == KeyEvent.VK_LEFT) 
-			player.left  =false;
-		
+
 		
 	}
 

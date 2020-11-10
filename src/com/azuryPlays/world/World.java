@@ -37,11 +37,8 @@ public class World {
 						tiles[xx+(yy * WIDTH)] = new  CenaryTile(xx*TILE_SIZE, yy*TILE_SIZE, Tile.TILE_CENARY);
 					}else if(pixelAtual == 0xFFFFFFFF) {//BRANCO
 						tiles[xx+(yy * WIDTH)] = new  SolidTile(xx*TILE_SIZE, yy*TILE_SIZE, Tile.TILE_WALL);
-					}else if(pixelAtual == 0xFF0000FF) {
-						//Jogador
-						Game.player.setX(xx*Player.PLAYER_SIZE);
-						Game.player.setY(yy*Player.PLAYER_SIZE);
 					}
+					
 				}
 			}
 		} catch (IOException e) {
@@ -71,7 +68,7 @@ public class World {
 	
 	public static void restartGame(){
 		/* refatorar objetos de importancia no jogo*/
-		Game.player = new Player(0,0,Player.PLAYER_SIZE,Player.PLAYER_SIZE,0,Game.spritesheet.getSprite(0,0,Player.PLAYER_SIZE,Player.PLAYER_SIZE));
+		Game.player = new Player(0,0,Player.PLAYER_SIZE,Player.PLAYER_SIZE,Game.spritesheet.getSprite(0,0,Player.PLAYER_SIZE,Player.PLAYER_SIZE));
 		
 		/*Limpar todas as listas de entidade */
 		Game.entities.clear();
