@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -48,7 +49,8 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(this);
-		setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
+/*FS*/	setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+		//setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
 		initFrame();
 		image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
 		
@@ -70,6 +72,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 	public void initFrame(){
 		frame = new JFrame("Game Name ?");
 		frame.add(this);
+		frame.setUndecorated(true);  /* Remover Barra Topo com opções de ( - /[][]/  X )  */
 		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -131,8 +134,9 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 		}
 		/***/
 		g.dispose();
-		g = bs.getDrawGraphics();
-		g.drawImage(image, 0, 0,WIDTH*SCALE,HEIGHT*SCALE,null);
+		g = bs.getDrawGraphics();	
+/*FS*/	g.drawImage(image, 0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height, null);
+		//g.drawImage(image, 0, 0,WIDTH*SCALE,HEIGHT*SCALE,null);
 		ui.render(g);
 		bs.show();
 	}

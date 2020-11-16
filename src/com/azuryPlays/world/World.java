@@ -19,6 +19,11 @@ public class World {
 	public static final int TILE_SIZE = 16;
 	public static final double GRAVITY = 4;
 	
+	public static  int xINITIAL;
+	public static  int yINITIAL;
+	public static  int xFINAL;
+	public static  int yFINAL;
+	
 	
 	public World(String path){
 		try {
